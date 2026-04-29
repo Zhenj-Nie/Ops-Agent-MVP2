@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ops Agent MVP 控制台</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div>
+        <h1>Ops Agent MVP 控制台</h1>
+        <p>通用运营自动化骨架：前端控制台 + 后端 API + 多 Agent + SQLite 队列 + 飞书通知占位</p>
+      </div>
+      <button id="refreshBtn">刷新</button>
+    </header>
+
+    <section class="grid">
+      <div class="card">
+        <h2>创建 Demo 任务</h2>
+        <p>创建一个模拟股票/运营指标监控任务，并立即进入队列。</p>
+        <button id="demoBtn" class="primary">创建股票监控 Demo</button>
+      </div>
+
+      <div class="card">
+        <h2>自定义任务</h2>
+        <label>任务名称</label>
+        <input id="taskName" value="自定义股票监控" />
+        <label>任务类型</label>
+        <input id="taskType" value="stock_monitor" />
+        <label>配置 JSON</label>
+        <textarea id="taskConfig" rows="8">{
+  "provider": "mock",
+  "symbols": ["AAPL", "MSFT", "NVDA"],
+  "thresholds": {"abs_change_pct": 3}
+}</textarea>
+        <button id="createBtn" class="primary">创建并执行</button>
+      </div>
+
+      <div class="card">
+        <h2>飞书通知占位</h2>
+        <textarea id="notifyText" rows="4">这是一条飞书通知占位测试</textarea>
+        <button id="notifyBtn">发送测试通知</button>
+      </div>
+    </section>
+
+    <section class="card full">
+      <h2>任务列表</h2>
+      <div id="tasks"></div>
+    </section>
+
+    <section class="card full">
+      <h2>运行记录</h2>
+      <div id="runs"></div>
+    </section>
+
+    <section class="card full">
+      <h2>运行详情</h2>
+      <pre id="detail">点击运行记录查看详情。</pre>
+    </section>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
